@@ -1,0 +1,10 @@
+html {
+    background: #fdfdff;
+    color: #444;
+}
+
+html, head, body {
+    height: 90%;
+    margin: 0;
+    padding: 0.5%;
+}
