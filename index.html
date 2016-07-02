@@ -10,21 +10,13 @@
 <body>
     <div id="pano" style="width: 74%; height: 90%;float:left"></div>
     <div id="map" style="width: 25%; height: 90%;float:right"></div>
+    <button type="button" onclick="initPan()"></button>
+
     <script>
         var map;
         var panorama;
 
         function initMap() {
-
-            longp = parseFloat((Math.random() * (-0.7 - 6.5) + -1.8).toFixed(6))
-            latp = parseFloat((Math.random() * (58.7 - 55) + 55).toFixed(6))
-
-            var scene = {
-                lat: latp,
-                lng: longp
-            };
-            var sv = new google.maps.StreetViewService();
-
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 6,
                 streetViewControl: false
@@ -38,8 +30,27 @@
                     map.setCenter(results[0].geometry.location);
                 }
             });
+            initPan();
+        }
 
-            panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'));
+        function initPan() {
+
+            longp = parseFloat((Math.random() * (-0.7 - 6.5) + -1.8).toFixed(6))
+            latp = parseFloat((Math.random() * (58.7 - 55) + 55).toFixed(6))
+
+            var scene = {
+                lat: latp,
+                lng: longp
+            };
+            var sv = new google.maps.StreetViewService();
+            
+            panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), {
+                linksControl: false,
+                panControl: false,
+                zoomControl: false,
+                addressControl: false,
+                fullscreenControl: false
+            });
 
             sv.getPanorama({
                 location: scene,
@@ -62,13 +73,11 @@
                 });
                 panorama.setVisible(true);
             } else {
-                reinitMap()
+                initPan();
             }
         }
-
-        function reinitMap() {initMap();}
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIQw_KpTs0mpiOOyKyBIQrOLKEKI71tnc&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqEURipt2pfE98UFQW-rAUXgrHHCxtBUY&callback=initMap">
     </script>
 </body>
 </html>

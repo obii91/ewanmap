@@ -8,3 +8,12 @@ html, head, body {
     margin: 0;
     padding: 0.5%;
 }
+
+button {
+    position: absolute;
+    background:url(reload.png) no-repeat;
+    width:105px;
+    height:110px;
+    top: 80%;
+    left: 50%;
+}
